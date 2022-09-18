@@ -1,0 +1,20 @@
+class Solution {
+    public int longestContinuousSubstring(String s) {
+        int n = 0, a = 1,max = 0;
+        int t = s.charAt(0) & 31;
+        s = s + " ";                //if the substring with longest length ends at last
+        for(int i = 1; i < s.length(); i++){
+            n = s.charAt(i) & 31;  //to find the position of ith element in english alphabet
+            if(n==++t)
+                a++;
+            else{
+                max = Math.max(a,max);
+                t = s.charAt(i) & 31;
+                a = 1;
+            }
+        }                         
+        if(a==s.length()-1)
+            return s.length()-1;
+        return max;
+    }
+}
